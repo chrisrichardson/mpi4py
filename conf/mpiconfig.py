@@ -456,7 +456,8 @@ if __name__ == '__main__':
     parser.add_option("--mpif77",  type="string")
     parser.add_option("--mpild",   type="string")
     (opts, args) = parser.parse_args()
-
+    print('OPTIONS=', opts)
+    
     log = dulog.Log(dulog.INFO)
     cfg = Config(log)
     cfg.setup(opts)
