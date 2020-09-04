@@ -84,6 +84,7 @@ class Config(object):
             log.info("MPI linker:        %s", mpild)
 
     def update(self, config, **more):
+        print("Update ", config, more)
         if hasattr(config, 'keys'):
             config = config.items()
         for option, value in config:
@@ -98,6 +99,7 @@ class Config(object):
         if environ is None: environ = os.environ
         self.setup_library_info(options, environ)
         self.setup_compiler_info(options, environ)
+        print("after setup ", self.compiler_info)
 
     def setup_library_info(self, options, environ):
         filename = section = None
@@ -266,9 +268,6 @@ class Config(object):
 
     def setup_compiler_info(self, options, environ):
         
-        print('OPTIONS=', options)
-        print('ENVIRON=', environ)
-        
         def find_exe(cmd, path=None):
             if not cmd: return None
             parts = split_quoted(cmd)
@@ -289,6 +288,7 @@ class Config(object):
         #
         compiler_info = {}
         PATH = environ.get('PATH', '')
+        print("PATH=", PATH)
         for name, _ in COMPILERS:
             cmd = (environ.get(name.upper()) or
                    getattr(options, name, None) or
@@ -296,6 +296,7 @@ class Config(object):
                    None)
             if cmd:
                 exe = find_exe(cmd, path=PATH)
+                print("cmd=", cmd, " exe=", exe)
                 if exe:
                     path = os.path.dirname(exe)
                     PATH = path + os.path.pathsep + PATH
@@ -311,7 +312,7 @@ class Config(object):
                         compiler_info[name] = cmd
                         break
         #
-        print("HELLO ", self.compiler_info)
+        print("HELLO ", compiler_info)
         self.compiler_info.update(compiler_info)
 
 
