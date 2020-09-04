@@ -289,6 +289,9 @@ class Config(object):
         compiler_info = {}
         PATH = environ.get('PATH', '')
         print("PATH=", PATH)
+        print("ENV=", environ)
+        print("self.compiler_info=", self.compiler_info)
+        print("options.mpicc=", getattr(options, "mpicc", None))
         for name, _ in COMPILERS:
             cmd = (environ.get(name.upper()) or
                    getattr(options, name, None) or
