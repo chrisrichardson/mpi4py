@@ -265,6 +265,10 @@ class Config(object):
 
 
     def setup_compiler_info(self, options, environ):
+        
+        print('OPTIONS=', options)
+        print('ENVIRON=', environ)
+        
         def find_exe(cmd, path=None):
             if not cmd: return None
             parts = split_quoted(cmd)
