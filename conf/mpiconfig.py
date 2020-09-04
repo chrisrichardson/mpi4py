@@ -307,6 +307,7 @@ class Config(object):
                         compiler_info[name] = cmd
                         break
         #
+        print("HELLO ", self.compiler_info)
         self.compiler_info.update(compiler_info)
 
 
