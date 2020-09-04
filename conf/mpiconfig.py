@@ -290,6 +290,7 @@ class Config(object):
         PATH = environ.get('PATH', '')
         print("PATH=", PATH)
         print("ENV=", environ)
+        environ={}
         print("self.compiler_info=", self.compiler_info)
         print("options.mpicc=", getattr(options, "mpicc", None))
         for name, _ in COMPILERS:
